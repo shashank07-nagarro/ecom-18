@@ -1,0 +1,89 @@
+<section class="cart-page py-5 mt-5">
+  <div class="card">
+    <div class="row">
+      <div class="col-md-8 cart">
+        <div class="title">
+          <div class="row">
+            <div class="col">
+              <h4><b>Shopping Cart</b></h4>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row border-top border-bottom"
+          *ngFor="let product of items$ | async"
+        >
+          <div class="row main align-items-center">
+            <div class="col-2">
+              <img
+                class="img-fluid"
+                src="{{ product.images[0].thumbnail }}"
+                alt="{{ product.title + ' thumbnail-img' }}"
+              />
+            </div>
+            <div class="col">
+              <div class="row text-muted">
+                {{ util.toTitleCase(product.categories[0].title) }}
+              </div>
+              <div class="row">{{ product.title }}</div>
+            </div>
+            <div class="col-2">
+              <span (click)="decreaseProduct(product.id)"
+                ><i class="bi bi-file-minus-fill"></i
+              ></span>
+              <span class="border px-1 mx-1">{{ product.count }}</span>
+              <i class="bi bi-file-plus-fill" (click)="addProduct(product)"></i>
+            </div>
+            <div class="col-2">
+              {{ product.price | currency }}
+              <i
+                (click)="removeProduct(product.id)"
+                class="bi bi-x float-right"
+              ></i>
+            </div>
+          </div>
+        </div>
+        <div class="back-to-shop">
+          <a [routerLink]="['/']" aria-label="Back to shop"
+            ><i class="bi bi-arrow-left"></i></a
+          ><span class="text-muted">Back to shop</span>
+        </div>
+      </div>
+      <div
+        class="col-md-4 summary"
+        *ngIf="selectCartTatalPrice$ | async; let selectCartTatalPrice"
+      >
+        <div>
+          <h5><b>Summary</b></h5>
+        </div>
+        <hr />
+        <div class="row">
+          <div class="col" style="padding-left: 0">
+            ITEMS {{ selectCartTatalItemCount$ | async }}
+          </div>
+          <div class="col text-right">
+            {{ selectCartTatalPrice | currency }}
+          </div>
+        </div>
+        <form>
+          <p>SHIPPING</p>
+          <select aria-label="Standard-Delivery shippingCharge">
+            <option class="text-muted">
+              Standard-Delivery- {{ shippingCharge | currency }}
+            </option>
+          </select>
+        </form>
+        <div
+          class="row"
+          style="border-top: 1px solid rgba(0, 0, 0, 0.1); padding: 2vh 0"
+        >
+          <div class="col">TOTAL PRICE</div>
+          <div class="col text-right">
+            {{ selectCartTatalPrice + shippingCharge | currency }}
+          </div>
+        </div>
+        <button class="btn">CHECKOUT</button>
+      </div>
+    </div>
+  </div>
+</section>

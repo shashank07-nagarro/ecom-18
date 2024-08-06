@@ -1,0 +1,97 @@
+<header class="bg-light mt-5">
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="0"
+        class="active"
+        aria-current="true"
+        aria-label="Slide 1"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="1"
+        aria-label="Slide 2"
+      ></button>
+      <button
+        type="button"
+        data-bs-target="#carouselExampleIndicators"
+        data-bs-slide-to="2"
+        aria-label="Slide 3"
+      ></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <picture>
+          <source
+            srcset="
+              assets/img/large/banner2.webp  1600w,
+              assets/img/medium/banner2.webp  800w,
+              assets/img/small/banner2.webp   600w
+            "
+          />
+          <img
+            src="assets/img/large/banner2.webp"
+            class="d-block w-100"
+            alt="Banner 2"
+            fetchpriority="high"
+          />
+        </picture>
+      </div>
+      <div class="carousel-item">
+        <picture>
+          <source
+            srcset="
+              assets/img/large/banner3.webp  1600w,
+              assets/img/medium/banner3.webp  800w,
+              assets/img/small/banner3.webp   600w
+            "
+          />
+          <img
+            src="assets/img/large/banner3.webp"
+            class="d-block w-100"
+            alt="Banner 3"
+            loading="lazy"
+          />
+        </picture>
+      </div>
+      <div class="carousel-item">
+        <picture>
+          <source
+            srcset="
+              assets/img/large/banner1.webp  1600w,
+              assets/img/medium/banner1.webp  800w,
+              assets/img/small/banner1.webp   600w
+            "
+          />
+          <img
+            src="assets/img/large/banner1.webp"
+            class="d-block w-100"
+            alt="Banner 1"
+            loading="lazy"
+          />
+        </picture>
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</header>

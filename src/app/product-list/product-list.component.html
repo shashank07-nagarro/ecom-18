@@ -1,0 +1,9 @@
+<div
+  class="row gx-1 gx-sm-4 gx-lg-5 row-cols-2 row-cols-md-2 row-cols-xl-4 justify-content-center"
+>
+  <app-product-card
+    class="col mb-sm-0 mb-md-4"
+    [product]="product"
+    *ngFor="let product of items$ | async"
+  ></app-product-card>
+</div>

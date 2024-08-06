@@ -1,0 +1,10 @@
+.carousel-item {
+  height: 70vh;
+  position: relative;
+}
+
+@media (max-width: 1180px) and (orientation: portrait) {
+  .carousel-item {
+    height: 50vh;
+  }
+}

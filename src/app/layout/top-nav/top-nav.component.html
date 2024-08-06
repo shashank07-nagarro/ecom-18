@@ -1,0 +1,162 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container px-4 px-lg-5">
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img
+        src="assets/img/logo3.webp"
+        width="140px"
+        class="d-block"
+        alt="Project Logo"
+        rel="preload"
+        fetchpriority="high"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="menDropdown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Men</a
+          >
+          <ul class="dropdown-menu" aria-labelledby="menDropdown">
+            <li>
+              <a
+                class="dropdown-item"
+                aria-label="Men T-shirt"
+                [routerLink]="['/tshirt/men']"
+                >T-shirt</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                aria-label="Men Jeans"
+                [routerLink]="['/jeans/men']"
+                >Jeans</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="womenDropdown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Women</a
+          >
+          <ul class="dropdown-menu" aria-labelledby="womenDropdown">
+            <li>
+              <a
+                class="dropdown-item"
+                aria-label="Women T-shirt"
+                [routerLink]="['/tshirt/women']"
+                >T-shirt</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                aria-label="Woemn Jeans"
+                [routerLink]="['/jeans/women']"
+                >Jeans</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                aria-label="Hand Bags"
+                [routerLink]="['/handbags/women']"
+                >Hand Bags</a
+              >
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            id="beautyDropdown"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+            >Beauty</a
+          >
+          <ul class="dropdown-menu" aria-labelledby="beautyDropdown">
+            <li>
+              <a
+                class="dropdown-item"
+                aria-label="Perfume"
+                [routerLink]="['/perfume']"
+                >Perfume</a
+              >
+            </li>
+            <li>
+              <a
+                class="dropdown-item"
+                aria-label="Soap"
+                [routerLink]="['/soap']"
+                >Soap</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search for Women, Men, Kids Fashion & Lifestyle"
+          aria-label="Search"
+          list="datalistOptions"
+          [formControl]="searchValue"
+          (input)="onInputChange($event)"
+        />
+        <datalist id="datalistOptions">
+          @for((product of items$ | async); track $index) {
+          <option
+            [value]="product.title"
+            [attr.data-value]="{
+              category: product.categories[0].alias,
+              alias: product.alias,
+              id: product.id,
+            } | json"
+          ></option>
+          }
+        </datalist>
+      </form>
+      <span class="d-flex">
+        <a
+          class="btn btn-outline-dark"
+          [attr.aria-label]="
+            (selectCartTatalItemCount$ | async) + ' items in Cart'
+          "
+          [routerLink]="['/cart']"
+        >
+          <i class="bi-cart-fill me-1"></i>
+          Cart
+          <span class="badge bg-dark text-white ms-1 rounded-pill">{{
+            selectCartTatalItemCount$ | async
+          }}</span>
+        </a>
+      </span>
+    </div>
+  </div>
+</nav>

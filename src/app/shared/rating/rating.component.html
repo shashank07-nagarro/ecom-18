@@ -1,0 +1,12 @@
+<div class="small text-warning mb-2">
+  @if(showFull) {
+  <span class="mx-1 text-secondary">{{ this.product?.rating?.rate }}</span>
+  } @for(cls of ratingClassArr; track $index) {
+  <span class="{{ cls }}"></span>
+  }
+  <span class="mx-1 text-secondary">|</span>
+  <span class="text-primary">{{ this.product?.rating?.count }}</span>
+  @if(showFull) {
+  <span class="text-primary"> ratings</span>
+  }
+</div>

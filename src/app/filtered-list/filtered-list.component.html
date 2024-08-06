@@ -1,0 +1,8 @@
+<section class="py-5">
+  <div class="container px-sm-2 px-md-4 px-lg-5 mt-5">
+    <app-breadcrumb></app-breadcrumb>
+    <div *ngIf="filterData$ | async as filterData">
+      <app-product-list [filterData]="filterData"></app-product-list>
+    </div>
+  </div>
+</section>

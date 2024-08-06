@@ -1,0 +1,14 @@
+a.card-style {
+  text-decoration: none;
+  color: #282c3f;
+  background-color: transparent;
+}
+
+h3.card-title {
+  font-size: 1.2em;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,71 @@
+<div class="col mb-3">
+  @if(product) {
+  <div class="card h-100">
+    <!-- Sale badge-->
+    <!-- <div
+      class="badge bg-dark text-white position-absolute"
+      style="top: 0.5rem; right: 0.5rem"
+    >
+      Sale
+    </div> -->
+    <!-- Product image-->
+    <a
+      class="card-style"
+      [routerLink]="[
+        '/',
+        product.categories[0].alias,
+        product.alias,
+        product.id
+      ]"
+      [attr.aria-label]="'Click to see ' + product.title + ' Details'"
+    >
+      <div style="height: 150px; position: relative">
+        <img
+          class="card-img-top"
+          ngSrc="{{ product.images[0].small }}"
+          alt="{{ product.title + ' card-img' }}"
+          fill
+        />
+      </div>
+      <!-- Product details-->
+      <div class="card-body p-sm-2 p-md-4">
+        <div class="text-center">
+          <!-- Product name-->
+
+          <h3 class="fw-bolder card-title">{{ product.title }}</h3>
+          <!-- Product price-->
+          <span
+            [attr.aria-label]="'Item price is ' + (product.price | currency)"
+            >{{ product.price | currency }}</span
+          >
+        </div>
+      </div>
+      <!-- Product actions-->
+      <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+        <div class="text-center">
+          @if(!addedToCart) {
+          <button
+            (click)="addProduct(product, $event)"
+            class="btn btn-outline-dark d-flex gap-1 m-auto"
+            aria-label="Add To Cart"
+          >
+            <i class="bi-cart-fill"></i>
+            <span class="d-none d-sm-block">Add To Cart</span>
+          </button>
+          } @else {
+          <button
+            class="btn btn-outline-dark d-flex gap-1 m-auto"
+            (click)="goToCart($event)"
+            type="button"
+            aria-label="Go To Cart"
+          >
+            <span class="d-none d-sm-block">Go To Cart</span>
+            <i class="bi-send-fill"></i>
+          </button>
+          }
+        </div>
+      </div>
+    </a>
+  </div>
+  }
+</div>

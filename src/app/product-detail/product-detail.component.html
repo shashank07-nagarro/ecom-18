@@ -1,0 +1,90 @@
+<ng-container *ngIf="product$ | async as product">
+  <section class="py-5">
+    <div class="container px-sm-2 px-md-4 px-lg-5 mt-5 {{ addMeta(product) }}">
+      <app-breadcrumb></app-breadcrumb>
+      <div class="row gx-4 gx-lg-5 align-items-center">
+        <div class="col-md-6">
+          <div id="carouselExampleFade" class="carousel slide carousel-fade">
+            <div class="carousel-inner">
+              @for(cls of product.images; track $index) {
+              <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                <img
+                  ngSrc="{{ cls.medium }}"
+                  class="d-block w-100"
+                  alt="{{ product.title + ' img - ' + $index }}"
+                  fill
+                  priority="{{ $index == 0 ? 'true' : 'false' }}"
+                />
+              </div>
+              }
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExampleFade"
+              data-bs-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExampleFade"
+              data-bs-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <h1 class="display-5 fw-bolder">{{ product.title }}</h1>
+          <div class="fs-5 mb-3">
+            <span>{{ product.price | currency }}</span>
+          </div>
+          <p class="lead">
+            {{ product.description }}
+          </p>
+          <div class="d-flex">
+            @if(!addedToCart) {
+            <button
+              class="btn btn-outline-dark flex-shrink-0"
+              (click)="addProduct(product)"
+              type="button"
+            >
+              <i class="bi-cart-fill me-1"></i>
+              Add to cart
+            </button>
+            } @else {
+            <a
+              class="btn btn-outline-dark flex-shrink-0"
+              [routerLink]="['/cart']"
+              type="button"
+              >Go to cart
+              <i class="bi-send-fill me-1"></i>
+            </a>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Related items section-->
+  <section class="py-2 bg-light">
+    <div class="container px-sm-2 px-md-4 px-lg-5 mt-4">
+      <h2 class="fw-bolder mb-4">Related products</h2>
+
+      <app-product-list
+        [filterData]="{ category: product.categories[0].alias }"
+      ></app-product-list>
+    </div>
+  </section>
+</ng-container>
