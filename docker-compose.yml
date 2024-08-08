@@ -1,0 +1,13 @@
+version: '3.2'
+
+services:
+  ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    # image name
+    image: ui-ecom-18
+    # container name
+    container_name: ecom-18-ui
