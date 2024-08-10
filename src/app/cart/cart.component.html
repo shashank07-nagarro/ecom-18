@@ -11,9 +11,11 @@
         </div>
         <div
           class="row border-top border-bottom"
-          *ngFor="let product of items$ | async"
+          *ngFor="let product of items$ | async; let last = last"
         >
-          <div class="row main align-items-center">
+          <div
+            class="row main align-items-center {{ setRecom(product, last) }}"
+          >
             <div class="col-2">
               <img
                 class="img-fluid"
@@ -85,5 +87,16 @@
         <button class="btn">CHECKOUT</button>
       </div>
     </div>
+  </div>
+</section>
+
+<section class="py-2 bg-light">
+  <div class="container px-sm-2 px-md-4 px-lg-5 mt-4">
+    <h2 class="fw-bolder mb-4">Recommended based on your purchase</h2>
+    @if(recommendedItem) {
+    <app-product-list
+      [filterData]="{ category: recommendedItem }"
+    ></app-product-list>
+    }
   </div>
 </section>
