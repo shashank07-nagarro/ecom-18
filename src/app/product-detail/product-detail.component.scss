@@ -1,10 +1,16 @@
-.carousel-item {
-  height: 70vh;
-  position: relative;
-}
-
-@media (max-width: 1180px) and (orientation: portrait) {
+.product-detail {
   .carousel-item {
-    height: 50vh;
+    height: 70vh;
+    position: relative;
+  }
+
+  @media (max-width: 1180px) and (orientation: portrait) {
+    .carousel-item {
+      height: 50vh;
+    }
+  }
+
+  h1 {
+    font-size: 2em !important;
   }
 }

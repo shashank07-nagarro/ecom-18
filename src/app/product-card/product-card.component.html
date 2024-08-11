@@ -26,6 +26,7 @@
           alt="{{ product.title + ' card-img' }}"
           fill
           priority
+          style="position: relative"
         />
       </div>
       <!-- Product details-->
@@ -35,10 +36,7 @@
 
           <h3 class="fw-bolder card-title">{{ product.title }}</h3>
           <!-- Product price-->
-          <span
-            [attr.aria-label]="'Item price is ' + (product.price | currency)"
-            >{{ product.price | currency }}</span
-          >
+          <app-price [product]="product"></app-price>
         </div>
       </div>
       <!-- Product actions-->

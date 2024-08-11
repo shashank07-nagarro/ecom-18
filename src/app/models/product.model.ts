@@ -4,6 +4,8 @@ export interface Product {
   alias: string;
   description?: string;
   price: number;
+  mrp: number;
+  color?: string;
   categories: any[];
   genders: any[];
   images: any[];

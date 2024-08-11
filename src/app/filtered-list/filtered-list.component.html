@@ -1,8 +1,71 @@
 <section class="py-5">
-  <div class="container px-sm-2 px-md-4 px-lg-5 mt-5">
+  <div class="container px-2 mt-5">
     <app-breadcrumb></app-breadcrumb>
-    <div *ngIf="filterData$ | async as filterData">
-      <app-product-list [filterData]="filterData"></app-product-list>
+    <div class="row gx-1 gx-sm-4 gx-lg-5">
+      <div class="col-md-5 col-lg-3 d-none d-md-block">
+        <div class="card">
+          <div class="card-header">Price Range</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <mat-slider
+                id="customRange3"
+                discrete
+                class="price-slider-container"
+                [min]="min"
+                [max]="max"
+                [step]="step"
+                tickInterval="10"
+                showTickMarks
+              >
+                <input
+                  [(ngModel)]="minPrice"
+                  (ngModelChange)="modelChangeFn()"
+                  matSliderStartThumb
+                />
+                <input
+                  [(ngModel)]="maxPrice"
+                  (ngModelChange)="modelChangeFn()"
+                  matSliderEndThumb
+                />
+              </mat-slider>
+              <span style="margin-left: -10px">{{
+                min | currency : "INR"
+              }}</span>
+
+              <span class="float-end" style="margin-right: -10px">{{
+                max | currency : "INR"
+              }}</span>
+            </li>
+          </ul>
+        </div>
+        <div class="card mt-3">
+          <div class="card-header">Color</div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" [formGroup]="selectedColors">
+              @for(color of colorList; track $index) {
+              <p class="m-0">
+                <mat-checkbox color="#005cbb" [formControlName]="color"
+                  ><span
+                    class="dot"
+                    [style]="{ backgroundColor: color }"
+                  ></span>
+                  <span>{{ color }}</span></mat-checkbox
+                >
+              </p>
+              }
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-7 col-lg-9">
+        <div *ngIf="filterData$ | async as filterData">
+          <app-product-list
+            [colsMd]="2"
+            [colsXl]="3"
+            [filterData]="filterData"
+          ></app-product-list>
+        </div>
+      </div>
     </div>
   </div>
 </section>

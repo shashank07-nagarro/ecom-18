@@ -21,6 +21,9 @@ import { ProductCardComponent } from '../product-card/product-card.component';
 export class ProductListComponent {
   items$: Observable<Product[]>;
   @Input() filterData: any = {};
+  @Input() colsMd: number = 3;
+  @Input() colsSm: number = 2;
+  @Input() colsXl: number = 4;
 
   constructor(private store: Store<{ cart: ProductState }>) {
     this.items$ = store.select(selectProductList);

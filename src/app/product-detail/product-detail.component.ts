@@ -8,8 +8,9 @@ import { CartState } from '../store/state/cart.state';
 import { Product } from '../models/product.model';
 import { Meta } from '@angular/platform-browser';
 import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
-import { CommonModule, CurrencyPipe, NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { ProductListComponent } from '../product-list/product-list.component';
+import { PriceComponent } from '../shared/price/price.component';
 
 @Component({
   selector: 'app-product-detail',
@@ -21,8 +22,8 @@ import { ProductListComponent } from '../product-list/product-list.component';
     RouterModule,
     ProductListComponent,
     CommonModule,
-    CurrencyPipe,
     NgOptimizedImage,
+    PriceComponent,
   ],
 })
 export class ProductDetailComponent {

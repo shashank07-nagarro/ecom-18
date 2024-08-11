@@ -13,9 +13,7 @@
           class="row border-top border-bottom"
           *ngFor="let product of items$ | async; let last = last"
         >
-          <div
-            class="row main align-items-center {{ setRecom(product, last) }}"
-          >
+          <div class="row main align-items-center">
             <div class="col-2">
               <img
                 class="img-fluid"
@@ -27,20 +25,39 @@
               <div class="row text-muted">
                 {{ util.toTitleCase(product.categories[0].title) }}
               </div>
-              <div class="row">{{ product.title }}</div>
+              <a
+                class="link-style"
+                [routerLink]="[
+                  '/',
+                  product.categories[0].alias,
+                  product.alias,
+                  product.id
+                ]"
+                [attr.aria-label]="'Click to see ' + product.title + ' Details'"
+              >
+                <div class="row">{{ product.title }}</div>
+              </a>
+              <div class="qty-cls">
+                <i
+                  class="bi bi-file-minus-fill"
+                  (click)="decreaseProduct(product.id)"
+                ></i>
+                <span class="border px-1 mx-1">{{ product.count }}</span>
+                <i
+                  class="bi bi-file-plus-fill"
+                  (click)="addProduct(product)"
+                ></i>
+              </div>
             </div>
-            <div class="col-2">
-              <span (click)="decreaseProduct(product.id)"
-                ><i class="bi bi-file-minus-fill"></i
-              ></span>
-              <span class="border px-1 mx-1">{{ product.count }}</span>
-              <i class="bi bi-file-plus-fill" (click)="addProduct(product)"></i>
-            </div>
-            <div class="col-2">
-              {{ product.price | currency }}
+            <div class="col-2 d-flex flex-column">
+              <app-price
+                [product]="product"
+                [position]="'end'"
+                [flexDirection]="'column'"
+              ></app-price>
               <i
                 (click)="removeProduct(product.id)"
-                class="bi bi-x float-right"
+                class="bi bi-x float-right cross-icon"
               ></i>
             </div>
           </div>
@@ -64,14 +81,14 @@
             ITEMS {{ selectCartTatalItemCount$ | async }}
           </div>
           <div class="col text-right">
-            {{ selectCartTatalPrice | currency }}
+            {{ selectCartTatalPrice | currency : "INR" }}
           </div>
         </div>
         <form>
           <p>SHIPPING</p>
           <select aria-label="Standard-Delivery shippingCharge">
             <option class="text-muted">
-              Standard-Delivery- {{ shippingCharge | currency }}
+              Standard-Delivery- {{ shippingCharge | currency : "INR" }}
             </option>
           </select>
         </form>
@@ -80,23 +97,26 @@
           style="border-top: 1px solid rgba(0, 0, 0, 0.1); padding: 2vh 0"
         >
           <div class="col">TOTAL PRICE</div>
-          <div class="col text-right">
-            {{ selectCartTatalPrice + shippingCharge | currency }}
+          <div
+            class="col text-right"
+            [attr.aria-label]="
+              'TOTAL PRICE ' +
+              (selectCartTatalPrice + shippingCharge | currency : 'INR')
+            "
+          >
+            {{ selectCartTatalPrice + shippingCharge | currency : "INR" }}
           </div>
         </div>
-        <button class="btn">CHECKOUT</button>
+        <div class="d-flex justify-content-center">
+          <button
+            [attr.aria-label]="'Go to checkout'"
+            class="btn btn-dark mt-2 w-100"
+            (click)="goToCheckout($event)"
+          >
+            CHECKOUT
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
-<section class="py-2 bg-light">
-  <div class="container px-sm-2 px-md-4 px-lg-5 mt-4">
-    <h2 class="fw-bolder mb-4">Recommended based on your purchase</h2>
-    @if(recommendedItem) {
-    <app-product-list
-      [filterData]="{ category: recommendedItem }"
-    ></app-product-list>
-    }
   </div>
 </section>

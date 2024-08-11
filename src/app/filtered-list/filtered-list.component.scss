@@ -1,0 +1,19 @@
+.price-slider-container {
+  width: 100%;
+  margin: 0px auto;
+}
+
+.price-display {
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.dot {
+  height: 16px;
+  width: 16px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  border: 1px solid #ddd;
+}

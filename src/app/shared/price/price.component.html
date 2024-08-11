@@ -1,0 +1,20 @@
+@if(product) {
+<div
+  class="d-flex flex-{{ flexDirection }} justify-content-{{
+    position
+  }} align-items-end"
+>
+  <span>{{ product.price | currency : "INR" }}</span>
+  @if(product.mrp && product.mrp > product.price) {
+  <small
+    class="text-muted text-decoration-line-through mx-{{
+      +(flexDirection !== 'column')
+    }}"
+    >{{ product.mrp | currency : "INR" }}</small
+  >
+  <span class="text-success"
+    >{{ Math.round(100 - (product.price / product.mrp) * 100) }}%off</span
+  >
+  }
+</div>
+}

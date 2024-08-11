@@ -1,5 +1,5 @@
 // cart.component.ts
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CartState } from '../store/state/cart.state';
@@ -18,8 +18,9 @@ import { Cart } from '../models/cart.model';
 import { Product } from '../models/product.model';
 import { UtilityService } from '../services/utility.service';
 import { AsyncPipe, CommonModule, CurrencyPipe } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ProductListComponent } from '../product-list/product-list.component';
+import { PriceComponent } from '../shared/price/price.component';
 
 @Component({
   selector: 'app-cart',
@@ -32,6 +33,7 @@ import { ProductListComponent } from '../product-list/product-list.component';
     CurrencyPipe,
     AsyncPipe,
     ProductListComponent,
+    PriceComponent,
   ],
 })
 export class CartComponent {
@@ -39,12 +41,11 @@ export class CartComponent {
   selectCartTatalItemCount$: Observable<number>;
   selectCartTatalPrice$: Observable<number>;
   shippingCharge: number = 5;
-  recommendedItem = '';
 
   constructor(
     private store: Store<{ cart: CartState }>,
     public util: UtilityService,
-    private cdr: ChangeDetectorRef
+    private router: Router
   ) {
     this.items$ = store.select(selectCartData);
     this.selectCartTatalItemCount$ = store.select(selectCartTatalItemCount);
@@ -63,18 +64,13 @@ export class CartComponent {
     this.store.dispatch(removeProduct({ itemId }));
   }
 
-  setRecom(product: Product, last: boolean) {
-    if (last) {
-      this.cdr.markForCheck();
-      this.recommendedItem = product.categories[0].alias;
-    }
-  }
-
-  ngAfterContentChecked() {
-    this.cdr.detectChanges();
-  }
-
   clearCart() {
     this.store.dispatch(clearCart());
+  }
+
+  goToCheckout(event: Event) {
+    event.stopPropagation();
+    event.preventDefault();
+    this.router.navigate(['/checkout']);
   }
 }

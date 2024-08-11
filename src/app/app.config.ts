@@ -21,6 +21,7 @@ import {
 } from '@angular/common/http';
 import { provideClientHydration } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 const isBrowser =
   typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
@@ -35,6 +36,6 @@ export const appConfig: ApplicationConfig = {
     provideEffects([ProductEffects]),
     provideHttpClient(withInterceptorsFromDi(), withFetch()),
     //provideClientHydration(),
-    importProvidersFrom([FormsModule, ReactiveFormsModule]),
+    importProvidersFrom([FormsModule, ReactiveFormsModule]), provideAnimationsAsync(),
   ],
 };

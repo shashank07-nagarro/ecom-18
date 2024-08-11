@@ -4,14 +4,15 @@ import { addProduct } from '../store/actions/cart.actions';
 import { Product } from '../models/product.model';
 import { CartState } from '../store/state/cart.state';
 import { Router, RouterModule } from '@angular/router';
-import { CurrencyPipe, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
+import { PriceComponent } from '../shared/price/price.component';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
-  imports: [RouterModule, CurrencyPipe, NgOptimizedImage],
+  imports: [RouterModule, NgOptimizedImage, PriceComponent],
 })
 export class ProductCardComponent {
   @Input()
