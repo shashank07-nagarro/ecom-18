@@ -24,7 +24,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 ## Install all dependencies
 
-Run the command npm i to install all the application dependencies
+Run the command `npm i` to install all the application dependencies
 
 ## Run the application in Docker Environment (Currently, this point to development environment)
 
