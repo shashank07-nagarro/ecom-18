@@ -1,14 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 .main-container {
-    min-height: 80vh;
+  min-height: 80vh;
 }
 
 mat-checkbox .mat-internal-form-field > label {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    text-transform: capitalize;
-  }
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-transform: capitalize;
+}

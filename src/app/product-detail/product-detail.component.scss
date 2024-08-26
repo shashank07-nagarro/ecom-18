@@ -4,6 +4,10 @@
     position: relative;
   }
 
+  #carouselExampleFade {
+    width: 100%;
+  }
+
   @media (max-width: 1180px) and (orientation: portrait) {
     .carousel-item {
       height: 50vh;

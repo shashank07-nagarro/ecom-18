@@ -21,11 +21,13 @@
                   [(ngModel)]="minPrice"
                   (ngModelChange)="modelChangeFn()"
                   matSliderStartThumb
+                  [attr.aria-label]="'Min Amount'"
                 />
                 <input
                   [(ngModel)]="maxPrice"
                   (ngModelChange)="modelChangeFn()"
                   matSliderEndThumb
+                  [attr.aria-label]="'Max Amount'"
                 />
               </mat-slider>
               <span style="margin-left: -10px">{{
@@ -44,7 +46,10 @@
             <li class="list-group-item" [formGroup]="selectedColors">
               @for(color of colorList; track $index) {
               <p class="m-0">
-                <mat-checkbox color="#005cbb" [formControlName]="color"
+                <mat-checkbox
+                  [attr.aria-label]="'Select ' + color + ' color'"
+                  color="#005cbb"
+                  [formControlName]="color"
                   ><span
                     class="dot"
                     [style]="{ backgroundColor: color }"
